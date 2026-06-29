@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aldi Fauzi — xZiyy | Software Engineer Portfolio</title>
+<meta name="description" content="Portfolio Aldi Fauzi (xZiyy) — Software Engineer & Designer." />
+
+<!--
+  =====================================================================
+  CARA BACA FILE INI (untuk belajar)
+  =====================================================================
+  1. index.html  -> isi & struktur halaman (yang sedang kamu baca)
+  2. style.css   -> semua tampilan visual, dibagi per-section dengan
+                    komentar "=== NAMA SECTION ===" supaya mudah dicari
+  3. script.js   -> logika interaktif (animasi ketik, menu burger,
+                    animasi muncul saat scroll)
+
+  Kita pakai 2 "alat" CSS sekaligus:
+  - Tailwind CSS (lewat CDN)  -> untuk hal cepat: jarak, grid, flex,
+    responsive (class seperti "flex", "md:grid-cols-2", dst)
+  - style.css custom          -> untuk hal yang butuh desain khusus:
+    efek kaca (glass), animasi orbit, wave divider, dll.
+  =====================================================================
+-->
+
+<!-- Tailwind CSS lewat CDN (tanpa perlu install apa-apa) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: 3 jenis font sesuai "peran" masing-masing
+     - Anton            -> judul besar yang tegas/jersey-style
+     - Playfair Display -> judul elegan bergaya serif/editorial
+     - Inter            -> teks paragraf & UI, mudah dibaca -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- CSS custom kita -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cream text-ink antialiased">
+
+  <!-- =================================================================
+       NAVBAR
+       - Bentuk pil (rounded-full) melayang di atas, efek kaca (glass)
+       - Desktop: logo kiri, menu kanan
+       - Mobile : logo & tombol burger disatukan berdampingan
+  ================================================================== -->
+  <header class="site-header">
+    <nav class="navbar-glass">
+      <a href="#home" class="logo-dot" aria-label="Kembali ke Beranda"></a>
+
+      <!-- Menu desktop -->
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link is-active" data-nav>HOME</a></li>
+        <li><a href="#whois" class="nav-link" data-nav>ABOUT</a></li>
+        <li><a href="#cv" class="nav-link nav-link--bold" data-nav>CV</a></li>
+        <li><a href="#works" class="nav-link" data-nav>WORKS</a></li>
+      </ul>
+
+      <!-- Tombol burger, hanya tampil di mobile (diatur di style.css) -->
+      <button id="menuToggle" class="burger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Buka menu navigasi">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Panel menu mobile, disembunyikan secara default -->
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#home" data-nav>HOME</a>
+      <a href="#whois" data-nav>ABOUT</a>
+      <a href="#cv" data-nav>CV</a>
+      <a href="#works" data-nav>WORKS</a>
+    </div>
+  </header>
+
+  <!-- =================================================================
+       HERO SECTION (latar terang / cream)
+  ================================================================== -->
+  <section id="home" class="hero-section">
+    <!-- Hiasan latar: blob gradasi lembut + grid titik halus,
+         supaya putih hero tidak terasa kosong/flat -->
+    <div class="hero-bg-glow" aria-hidden="true"></div>
+    <div class="hero-bg-grid" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+
+      <!-- Kolom Teks -->
+      <div class="hero-text reveal">
+        <span class="badge-pill">Halo, saya Aldi Fauzi 👋</span>
+
+        <div class="hero-headline-row">
+          <!-- Tag peran kecil, replikasi dari desain: DESIGNER vertikal + AI/DEV -->
+          <div class="role-tags" aria-hidden="true">
+            <span class="role-tag role-tag--vertical">DESIGNER</span>
+            <span class="role-tag-stack">
+              <span class="role-tag">AI</span>
+              <span class="role-tag">DEV</span>
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            I'm <span id="typewriter" class="role-text"></span><span class="caret" aria-hidden="true"></span>
+          </h1>
+        </div>
+
+        <p class="hero-paragraph">
+          Saya membangun antarmuka yang bersih dan sistem yang kokoh di baliknya —
+          memadukan kepekaan desain dengan kemampuan teknis untuk menghasilkan produk
+          digital yang terasa ringan saat digunakan, namun matang dari sisi rekayasa.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#whois" class="btn btn-glass-light">WHO IS?</a>
+          <a href="#" class="btn btn-glass-dark" download>DOWNLOAD CV</a>
+        </div>
+
+        <div class="hero-socials" aria-label="Tautan sosial media">
+          <a href="#" class="social-dot" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.7 5.6.7 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.3 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3 0 4.3-2.7 5.3-5.3 5.6.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.3 5.6 18.3.5 12 .5Z"/></svg>
+          </a>
+          <a href="#" class="social-dot" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 2 .2 2.8.5.8.3 1.4.7 2 1.3.6.6 1 1.2 1.3 2 .3.8.5 1.6.5 2.8.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 2-.5 2.8-.3.8-.7 1.4-1.3 2-.6.6-1.2 1-2 1.3-.8.3-1.6.5-2.8.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-2-.2-2.8-.5-.8-.3-1.4-.7-2-1.3-.6-.6-1-1.2-1.3-2-.3-.8-.5-1.6-.5-2.8C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c0-1.2.2-2 .5-2.8.3-.8.7-1.4 1.3-2 .6-.6 1.2-1 2-1.3.8-.3 1.6-.5 2.8-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-2 .3-.5.2-.8.4-1.2.8-.4.4-.6.7-.8 1.2-.1.4-.3 1-.3 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1 .2 1.6.3 2 .2.5.4.8.8 1.2.4.4.7.6 1.2.8.4.1 1 .3 2 .3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 2-.3.5-.2.8-.4 1.2-.8.4-.4.6-.7.8-1.2.1-.4.3-1 .3-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.3-2-.2-.5-.4-.8-.8-1.2-.4-.4-.7-.6-1.2-.8-.4-.1-1-.3-2-.3-1.2-.1-1.6-.1-4.7-.1Zm0 4.3a5.7 5.7 0 1 1 0 11.4 5.7 5.7 0 0 1 0-11.4Zm0 1.8a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8Zm5.9-3.5a1.3 1.3 0 1 1 0 2.7 1.3 1.3 0 0 1 0-2.7Z"/></svg>
+          </a>
+          <a href="#" class="social-dot" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.7c0-1.4-.5-2.3-1.7-2.3-1 0-1.5.7-1.8 1.3-.1.2-.1.5-.1.8v5.9H9.6s.1-9.6 0-10.6h3.6v1.5a3.6 3.6 0 0 1 3.2-1.8c2.3 0 4 1.5 4 4.7v6.2ZM5.7 8.3a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 12.1H3.9V9.8h3.6v10.6Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Kolom Visual: Foto + skill yang mengorbit -->
+      <div class="hero-visual reveal" style="--delay:.15s">
+        <div class="orbit-wrap">
+          <div class="orbit-ring" aria-hidden="true"></div>
+
+          <div class="avatar-photo">
+            <!-- Ganti <span> ini dengan <img src="foto-kamu.jpg" alt="Aldi Fauzi"> -->
+            <span>Foto</span>
+          </div>
+
+          <!-- Sistem orbit: 5 skill badge mengelilingi foto.
+               Atur sudut awal tiap badge lewat --angle, dan kecepatan
+               orbit lewat --orbit-duration di style.css -->
+          <div class="orbit-system">
+            <div class="orbit-arm" style="--angle:0deg">
+              <div class="satellite">UI</div>
+            </div>
+            <div class="orbit-arm" style="--angle:72deg">
+              <div class="satellite">AI</div>
+            </div>
+            <div class="orbit-arm" style="--angle:144deg">
+              <div class="satellite">JS</div>
+            </div>
+            <div class="orbit-arm" style="--angle:216deg">
+              <div class="satellite">Git</div>
+            </div>
+            <div class="orbit-arm" style="--angle:288deg">
+              <div class="satellite">Figma</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indikator scroll ke bawah -->
+    <a href="#whois" class="scroll-cue" aria-label="Scroll ke bawah">
+      <span class="scroll-cue__mouse"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+
+    <!-- Wave divider: transisi dari latar terang ke latar gelap -->
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-fill" d="M0,40 C240,150 480,0 720,55 C960,115 1200,15 1440,75 L1440,0 L0,0 Z"/>
+        <path class="wave-line" d="M0,95 C260,190 520,40 760,100 C1000,150 1220,55 1440,115" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       WHO IS xZiyy (latar gelap / plum)
+  ================================================================== -->
+  <section id="whois" class="whois-section">
+    <div class="section-inner whois-grid">
+      <div class="whois-mark reveal">
+        <span class="whois-mark__question" aria-hidden="true">?</span>
+        <h2 class="whois-mark__title">WHO<br>IS</h2>
+        <p class="whois-mark__brand"><span class="dot"></span>xZiyy</p>
+      </div>
+
+      <div class="reveal" style="--delay:.15s">
+        <h3 class="whois-name">Aldi Fauzi</h3>
+        <p class="whois-bio">
+          Aldi Fauzi adalah seorang Software Engineer yang gemar merancang produk digital
+          dengan pendekatan yang rapi, fungsional, dan tetap manusiawi. Berangkat dari
+          ketertarikan pada desain dan teknologi, ia membangun <em>xZiyy</em> sebagai ruang
+          untuk mendokumentasikan eksplorasi — mulai dari antarmuka, sistem front-end,
+          hingga eksperimen kecil dengan AI.
+        </p>
+        <p class="whois-bio whois-bio--muted">
+          Baginya, kode yang baik adalah kode yang mudah dipahami, dan desain yang baik
+          adalah desain yang tidak perlu dijelaskan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       WORKS (latar gelap / plum, lanjutan)
+  ================================================================== -->
+  <section id="works" class="works-section">
+    <div class="section-inner">
+      <h2 class="works-heading reveal">WORKS</h2>
+      <p class="works-subtitle reveal" style="--delay:.05s">Beberapa project terbaru — arahkan kursor untuk melihat detailnya.</p>
+
+      <div class="works-grid">
+
+        <!-- Ulangi blok <article class="work-card"> ini untuk tiap project -->
+        <article class="work-card reveal" style="--delay:.05s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">Dashboard Analitik — tampilan data real-time yang ringkas.</p>
+        </article>
+
+        <article class="work-card reveal" style="--delay:.1s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">Landing Page SaaS — desain konversi tinggi, animasi halus.</p>
+        </article>
+
+        <article class="work-card reveal" style="--delay:.15s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">Mobile Banking App — alur pembayaran yang aman & intuitif.</p>
+        </article>
+
+        <!-- Kartu unggulan (tinggi), otomatis menempati 2 baris di desktop -->
+        <article class="work-card work-card--tall reveal" style="--delay:.2s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption work-card__caption--tall">Studi Kasus Unggulan — proses desain dari riset hingga rilis.</p>
+        </article>
+
+        <article class="work-card reveal" style="--delay:.05s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">Design System — komponen UI konsisten lintas produk.</p>
+        </article>
+
+        <article class="work-card reveal" style="--delay:.1s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">AI Chatbot — asisten percakapan berbasis model bahasa.</p>
+        </article>
+
+        <article class="work-card reveal" style="--delay:.15s">
+          <div class="work-card__thumb"></div>
+          <a href="#" class="work-card__overlay">
+            <span>Lihat Selengkapnya</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="work-card__caption">Portofolio Fotografi — galeri visual tata letak masonry.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       FOOTER (latar paling gelap)
+  ================================================================== -->
+  <footer id="contact" class="footer-section">
+    <div class="section-inner footer-grid">
+      <div class="reveal">
+        <h2 class="footer-heading">Just Tech<br>Antusiast</h2>
+      </div>
+
+      <div class="footer-links reveal" style="--delay:.1s">
+        <div>
+          <p class="footer-label">/Quick Links</p>
+          <div class="footer-pills">
+            <a href="#home" class="pill-glass-dark" data-nav>HOME</a>
+            <a href="#whois" class="pill-glass-dark" data-nav>ABOUT</a>
+            <a href="#cv" class="pill-glass-dark" data-nav>CV</a>
+            <a href="#works" class="pill-glass-dark" data-nav>WORKS</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-label">/Contact</p>
+          <div class="footer-pills">
+            <a href="mailto:hello@xziyy.dev" class="pill-glass-dark">CONTACT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-copy">© 2026 Aldi Fauzi — xZiyy. Seluruh hak cipta dilindungi.</p>
+
+    <!-- Watermark wordmark raksasa di bagian paling bawah -->
+    <div class="footer-watermark" aria-hidden="true">XZIYY</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
